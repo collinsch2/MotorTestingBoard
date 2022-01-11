@@ -7,8 +7,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.MotorBoardSubsystem;
 
 /**
@@ -26,14 +28,14 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     m_motorBoard.setDefaultCommand(
-      new InstantCommand(() -> setMotorPowers(-j.getRawAxis(1), -j.getRawAxis(5), (j.getRawAxis(3)-j.getRawAxis(2)))
+      new InstantCommand(() -> setPowers(-j.getRawAxis(1), -j.getRawAxis(5), (j.getRawAxis(3)-j.getRawAxis(2)))
       )
     );
     // Configure the button bindings
     configureButtonBindings();
   }
 
-  private void setMotorPowers(double s0, double s1, double t0) {
+  private void setPowers(double s0, double s1, double t0) {
     m_motorBoard.spark0.set(s0);
     m_motorBoard.spark1.set(s1);
     m_motorBoard.talon0.set(t0);
@@ -47,7 +49,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    
+    new JoystickButton(j, Button.kA.value)
+      .whenPressed(new InstantCommand(() -> m_motorBoard.solenoid0.toggle()));
+    new JoystickButton(j, Button.kY.value)
+      .whenPressed(new InstantCommand(() -> m_motorBoard.solenoid1.toggle()));
   }
 
   /**
