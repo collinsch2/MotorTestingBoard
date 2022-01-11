@@ -10,6 +10,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -22,7 +23,9 @@ public class MotorBoardSubsystem extends SubsystemBase {
   public final DoubleSolenoid solenoid1 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 1, 2); 
 
   /** Creates a new ExampleSubsystem. */
-  public MotorBoardSubsystem() {}
+  public MotorBoardSubsystem() {
+    solenoid1.set(Value.kReverse);
+  }
 
   @Override
   public void periodic() {
