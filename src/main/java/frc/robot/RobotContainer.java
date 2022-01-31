@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.MotorBoardSubsystem;
+import frc.robot.subsystems.AddressableLEDs;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -22,6 +23,7 @@ import frc.robot.subsystems.MotorBoardSubsystem;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   Joystick j = new Joystick(0);
+  public AddressableLEDs m_AddressableLEDs;
 
   private final MotorBoardSubsystem m_motorBoard = new MotorBoardSubsystem();
 
@@ -33,6 +35,8 @@ public class RobotContainer {
     );
     // Configure the button bindings
     configureButtonBindings();
+    m_AddressableLEDs = AddressableLEDs(15);
+    m_AddressableLEDs.setReadyToShoot();
   }
 
   private void setPowers(double s0, double s1, double t0) {
