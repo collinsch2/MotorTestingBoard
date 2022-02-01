@@ -35,7 +35,7 @@ public class RobotContainer {
     );
     // Configure the button bindings
     configureButtonBindings();
-    m_AddressableLEDs = AddressableLEDs(15);
+    m_AddressableLEDs = new AddressableLEDs(15);
     m_AddressableLEDs.setReadyToShoot();
   }
 
