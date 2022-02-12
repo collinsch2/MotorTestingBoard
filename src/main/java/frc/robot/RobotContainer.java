@@ -35,14 +35,13 @@ public class RobotContainer {
     );
     // Configure the button bindings
     configureButtonBindings();
-    m_AddressableLEDs = new AddressableLEDs(15);
-    m_AddressableLEDs.setReadyToShoot();
   }
 
   private void setPowers(double s0, double s1, double t0) {
     m_motorBoard.spark0.set(s0);
     m_motorBoard.spark1.set(s1);
     m_motorBoard.talon0.set(t0);
+    m_AddressableLEDs.update();
   }
   
 
