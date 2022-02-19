@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.MotorBoardSubsystem;
 import frc.robot.subsystems.AddressableLEDs;
+import frc.robot.subsystems.MotorBoardSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -23,7 +23,7 @@ import frc.robot.subsystems.AddressableLEDs;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   Joystick j = new Joystick(0);
-  public AddressableLEDs m_AddressableLEDs;
+  public AddressableLEDs m_AddressableLEDs = new AddressableLEDs();
 
   private final MotorBoardSubsystem m_motorBoard = new MotorBoardSubsystem();
 
@@ -31,8 +31,7 @@ public class RobotContainer {
   public RobotContainer() {
     m_motorBoard.setDefaultCommand(
       new InstantCommand(() -> setPowers(-j.getRawAxis(1), -j.getRawAxis(5), (j.getRawAxis(3)-j.getRawAxis(2)))
-      )
-    );
+      , m_motorBoard, m_AddressableLEDs));
     // Configure the button bindings
     configureButtonBindings();
   }

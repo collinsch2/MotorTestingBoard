@@ -10,6 +10,8 @@ public class AddressableLEDs extends SubsystemBase {
 
     public AddressableLEDs() {
         this.m_blinkin = new PWMSparkMax(0);
+        m_blinkin.set(0);
+        SmartDashboard.putNumber("LED PWM power", 0);
     }
 
     // public void setIndexerColor(double color1,  double color2) {
@@ -22,7 +24,7 @@ public class AddressableLEDs extends SubsystemBase {
     // }
 
     public void update() {
-        m_blinkin.set(SmartDashboard.getNumber("LED PWM power", 0));
+        m_blinkin.set(SmartDashboard.getNumber("LED PWM power", 0.33));
     }
 
  
